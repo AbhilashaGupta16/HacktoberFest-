@@ -1,3 +1,4 @@
+// Program to find whether a number is automorphic or not
 #include<conio.h>
 #include<math.h>
 #include<iostream.h>
