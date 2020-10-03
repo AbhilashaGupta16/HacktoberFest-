@@ -1,0 +1,23 @@
+                                  ----About this game----
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+This game is a Single player game a little bit like ping pong game we used to play in our childhood.
+I used to play this game a lot as It was an In-built game in Samsung Tv at that time. And I've not named this game so far...
+so lets call it "SAMSUNG TV WALA GAME". This game is built with python Kivy which allows it to run on Desktop as well as Android with same codes.
+For Android , All you have to do is to just convert this .py file to .apk with some linux commands.
+
+CONTROLS:
+	This game is controled with your mouse or you can use your Mobile Screen while playing it on Android.
+HOW TO PLAY :
+	Even a pro gamer is a noobda when it comes to play a new game he've not played yet. Well , His noobness could turn into some sort of average gaming
+	if he gets to know how that particular game is played. So Lets go and jump into the playing section:-
+	So the game starts with 3 moving balls and a solid block interface. All you have to do is to dont let any of the three balls touch wall on your
+	 side by moving that block. And there will be  your score running at the top-right corner.The game auto closes when you fail to do so.
+	Now,I know,  I know Everyone must be thining , What is this game...How can we play this game for too long..keeping eye on three balls is not an easy task, 
+	well,  for your fun and to let you play for longer time...There are 10 lives i.e, if  failed to keep ball clear of your wall you still have 9 more chances
+	to do so and to turn your score in a gient score.
+	So give it a try...Have Fun..
+
+
+----Any suggestion or any Change in favor of the game would be appreciated-----  
+	
