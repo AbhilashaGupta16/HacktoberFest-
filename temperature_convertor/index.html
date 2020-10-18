@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+    <title>Temperature Converter</title>
+</head>
+<body class="mainheading" style="text-align:center">
+    <div>
+        <h1 style="background-color: #ff7e67;">Temperature converter</h1>
+    </div>
+    <div class="a" >
+        <h2 >Celsius to Fahrenheit</h2>
+        <br>
+        <form id="form1">
+            <label for="celsuis">Enter the Celsius value (&#8451;):</label>
+            <input type="text" id="celsuis" name="celsuis"><br><br>
+            <button type="button" onclick="convertctof()">Calculate</button>
+            <br>
+            <br>
+            <p id="answer4"></p>
+            <p id="answer1"></p>
+          </form>
+    </div>
+    <div class="b">
+        <h2>Fahrenheit to Celsius</h2>
+        <br>
+        <form id="form2">
+            <label for="Fahrenheit">Enter the Fahrenheit value (&#8457;):</label>
+            <input type="text" id="Fahrenheit" name="Fahrenheit"><br><br>
+            <button type="button" onclick="convertftoc()">Calculate</button>
+            <br>
+            <br>
+            <p id="answer3"></p>
+            <p id="answer2"></p>
+          </form>
+    </div>
+    
+</body>
+</html>
