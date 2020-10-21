@@ -1,0 +1,171 @@
+1:  #include <windows.h>  
+2:  #include <iostream>  
+3:  #include <thread>  
+4:  using namespace std;  
+5:    
+6:  void gotoXY(int x, int y)  
+7:  {  
+8:   COORD coord;  
+9:   coord.X = x;  
+10:   coord.Y = y;  
+11:   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);  
+12:  }  
+13:    
+14:  int matrix[8][20];  
+15:  void drawPoint(int x, int y){  
+16:    if(y<20 & y>=-0){  
+17:      matrix[x][y]=1;  
+18:    }  
+19:  }  
+20:  void resetBoard(){  
+21:    for(int j=0;j<20;j++){  
+22:      for(int i=1;i<7;i++){  
+23:        matrix[i][j]=0;  
+24:      }  
+25:    }  
+26:  }  
+27:    
+28:  /*  
+29:  SOME IMPORTANT CLASSES (GAME ELEMENTS)  
+30:  */  
+31:  class EnemiesCar{  
+32:  public:  
+33:  EnemiesCar(){  
+34:    xPos=5;  
+35:    yPos=-3;  
+36:  }  
+37:  int xPos;  
+38:  int yPos;  
+39:  void appear(){  
+40:   if(yPos==20){  
+41:    int randomNo=rand()%2;  
+42:    if(randomNo==0){  
+43:      xPos=2;  
+44:    }  
+45:    else {  
+46:      xPos=5;  
+47:    }  
+48:    yPos=-3;  
+49:    }  
+50:  }  
+51:  void draw(){  
+52:    drawPoint(xPos,yPos);  
+53:    drawPoint(xPos-1,yPos+1);  
+54:    drawPoint(xPos+1,yPos+1);  
+55:    drawPoint(xPos,yPos+1);  
+56:    drawPoint(xPos,yPos+2);  
+57:    drawPoint(xPos-1,yPos+3);  
+58:    drawPoint(xPos+1,yPos+3);  
+59:    drawPoint(xPos,yPos+3);  
+60:  }  
+61:  void move(){  
+62:    yPos++;  
+63:  }  
+64:    
+65:  };  
+66:    
+67:  /////////////////////////////////////////  
+68:  class car{  
+69:  public:  
+70:  int xPos;  
+71:  int yPos;  
+72:  car(){  
+73:    xPos=2;  
+74:    yPos=16;  
+75:  }  
+76:  void draw(){  
+77:    drawPoint(xPos,yPos);  
+78:    drawPoint(xPos-1,yPos+1);  
+79:    drawPoint(xPos+1,yPos+1);  
+80:    drawPoint(xPos,yPos+1);  
+81:    drawPoint(xPos,yPos+2);  
+82:    drawPoint(xPos-1,yPos+3);  
+83:    drawPoint(xPos+1,yPos+3);  
+84:    drawPoint(xPos,yPos+3);  
+85:  }  
+86:  void moveLeft(){  
+87:    xPos=2;  
+88:  }  
+89:  void moveRight(){  
+90:    xPos=5;  
+91:  }  
+92:  void checkCollusion(EnemiesCar *EC, bool *running){  
+93:    if(EC->xPos==xPos & EC->yPos>13){  
+94:      *running=false;  
+95:    }  
+96:  }  
+97:  };  
+98:  //////////////////////////////////////  
+99:  //Listens to keyboard inputs  
+100:  void myListener(car *c){  
+101:    while(1){  
+102:        if (GetAsyncKeyState(VK_LEFT) & (0x8000 != 0)){  
+103:            c->moveLeft();  
+104:          }  
+105:        else if (GetAsyncKeyState(VK_RIGHT) & (0x8000 != 0)){  
+106:            c->moveRight();  
+107:          }  
+108:    }  
+109:  }  
+110:    
+111:  /////////////////////////////  
+112:  void startGame(){  
+113:    car mycar=car();  
+114:    EnemiesCar myEnmCar=EnemiesCar();  
+115:    // starts the second thread (The input listener )  
+116:    thread mySecondThread(myListener, &mycar);  
+117:    // This is the game engine/game loop  
+118:    bool running=true;  
+119:    while(running){  
+120:      resetBoard();  
+121:      myEnmCar.appear();  
+122:      myEnmCar.draw();  
+123:      myEnmCar.move();  
+124:      mycar.draw();  
+125:      mycar.checkCollusion(&myEnmCar,&running);  
+126:    
+127:      for(int j=0;j<20;j++){  
+128:        for(int i=0;i<8;i++){  
+129:          if(i==0 | i==7){  
+130:              gotoXY(i,j);  
+131:              cout<<"0";  
+132:                  }  
+133:          else if(matrix[i][j]==1){  
+134:              gotoXY(i,j);  
+135:              cout<<"0";  
+136:                  }  
+137:          else {  
+138:            gotoXY(i,j);  
+139:            cout<<" ";  
+140:              }  
+141:            }  
+142:          }  
+143:    
+144:      Sleep(50);  
+145:    }  
+146:    //The game ended  
+147:    
+148:    //Show the Game Over  
+149:    Sleep(1000);  
+150:    system("cls");  
+151:    gotoXY(5,4);  
+152:    cout<<"GAME OVER!!!";  
+153:    gotoXY(5,5);  
+154:    cout<<"By:Mubarak Hason";  
+155:    gotoXY(5,6);  
+156:    cout<<"HasonHex";  
+157:    gotoXY(0,0);  
+158:    Sleep(10000);  
+159:    
+160:    // Kills the second thread  
+161:    mySecondThread.detach();  
+162:  }  
+163:    
+164:  int main()  
+165:  {  
+166:    
+167:    
+168:    startGame();  
+169:    return 0;  
+170:  }  
+171:  
